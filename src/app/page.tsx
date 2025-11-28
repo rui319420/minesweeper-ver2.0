@@ -13,8 +13,7 @@ export default function Home() {
       <h2>マス（仮）</h2>
       <Cell></Cell>
       <h2>ボード（仮）</h2>
-      <Board>
-      </Board>
+      <Board></Board>
     </div>
   );
 }

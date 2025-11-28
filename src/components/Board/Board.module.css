@@ -1,5 +1,6 @@
 .Board {
   display: grid;
+  grid-template-columns: repeat(9, 1fr);
   background-color: #c0c0c0; 
   width: 300px;
   height: 300px;
