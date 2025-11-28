@@ -4,7 +4,6 @@ export function Board() {
   
   return (
     <div className={styles.Board}>
-
     </div>
   )
 }
