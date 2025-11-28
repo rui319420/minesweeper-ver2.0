@@ -1,0 +1,11 @@
+.StatusBar {
+  display: flex;
+  width: 300px;
+  height: 80px;
+  background-color: #c0c0c0;
+  border: 2px solid #808080;
+  border-top: 3px solid #fff;
+  border-left: 3px solid #fff;
+  border-right: 3px solid #808080;
+  border-bottom: 3px solid #808080;
+}
