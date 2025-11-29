@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./Board.module.css"
 import { Cell } from "../Cell/Cell"
-import { generateBombMap, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "@/src/utils/Logic";
+import { generateBombMap, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "../../utils/Logic";
 
 enum CellState {
   CLOSED = 0,
@@ -19,11 +19,20 @@ export function Board() {
 
   const handleCellClick = (index: number) => {
     const currentStatus = cellStates[index];
-    if (currentStatus === CellState.CLOSED) {
-      const newCellStates = [...cellStates];
-      newCellStates[index] = CellState.OPEN;
-      setCellStates(newCellStates);
+
+    if (currentStatus !== CellState.CLOSED) return;
+
+    let currentBombMap = bombMap;
+
+    if (currentBombMap.length === 0) {
+      currentBombMap = generateBombMap(BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT);
+      setBombMap(currentBombMap);
+      console.log(currentBombMap)
     }
+
+    const newCellStates = [...cellStates];
+    newCellStates[index] = CellState.OPEN;
+    setCellStates(newCellStates);
   };
 
   const handleRightClick = (e: React.MouseEvent, index: number) => {
