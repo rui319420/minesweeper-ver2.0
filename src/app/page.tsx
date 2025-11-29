@@ -6,14 +6,13 @@ import { Cell } from "../components/Cell/Cell";
 import { StatusBar } from "../components/StatusBar/StatusBar";
 
 
-
 export default function Home() {
   return (
     
     <div className="container">
       <h1>マインスイーパーver2.0!</h1>
       <h2>マス（仮）</h2>
-      <Cell></Cell>
+      <Cell x={0} y={0}></Cell>
       <h2>ボード（仮）</h2>
       <Board></Board>
       <h2>ステータスバー（仮）</h2>

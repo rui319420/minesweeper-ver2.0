@@ -1,9 +1,16 @@
 import styles from "./Cell.module.css"
 
-export function Cell() {
+type CellProps = {
+  x: number;
+  y: number;
+};
+
+export function Cell({x, y}: CellProps) {
   
 
   return (
-    <div className={styles.Cell}></div>
+    <div className={styles.Cell}>
+      ({x},{y})
+    </div>
   )
 }
