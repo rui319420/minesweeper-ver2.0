@@ -1,15 +1,32 @@
+import { log } from "console";
 import styles from "./Cell.module.css"
 
 type CellProps = {
   x: number;
   y: number;
+  status: number; // 0:閉, 1:旗, 2:?, 3:開
+  onClick: () => void;
+  onRightClick: (e: React.MouseEvent) => void;
 };
 
-export function Cell({x, y}: CellProps) {
+export function Cell({x, y, status, onClick, onRightClick}: CellProps) {
   
+  const cellDisplay = () => {
+    if (status === 1) return "旗";
+    if (status === 2) return "❓";
+    if (status === 3) return `${x},${y}`;
+    return "";
+  }
+
+  const className = status === 3 ? styles.CellOpen : styles.Cell;
 
   return (
-    <div className={styles.Cell}>
+    <div
+      className={className}
+      onClick={onClick}
+      onContextMenu={onRightClick}
+    >
+      {cellDisplay()}
       ({x},{y})
     </div>
   )
