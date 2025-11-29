@@ -7,9 +7,11 @@ export function Board() {
 
   return (
     <div className={styles.Board}>
-      {cells.map((_, index) => (
-        <Cell key={index}></Cell>
-      ))}
+      <div className={styles.CellBox}>
+        {cells.map((_, index) => (
+          <Cell key={index}></Cell>
+        ))}
+      </div>
     </div>
   )
 }

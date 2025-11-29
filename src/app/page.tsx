@@ -6,6 +6,7 @@ import { Cell } from "../components/Cell/Cell";
 import { StatusBar } from "../components/StatusBar/StatusBar";
 
 
+
 export default function Home() {
   return (
     

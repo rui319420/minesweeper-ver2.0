@@ -1,9 +1,8 @@
 .Cell {
   display: grid;
   background-color: #c0c0c0;
-  width: 28px;
-  height: 28px;
-  border: 2px solid #808080;
+  width: 21.4px;
+  height: 21.3px;
   border-top: 3px solid #fff;
   border-left: 3px solid #fff;
   border-right: 3px solid #808080;
