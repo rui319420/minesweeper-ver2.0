@@ -11,8 +11,6 @@ export default function Home() {
     
     <div className="container">
       <h1>マインスイーパーver2.0!</h1>
-      <h2>マス（仮）</h2>
-      <Cell x={0} y={0}></Cell>
       <h2>ボード（仮）</h2>
       <Board></Board>
       <h2>ステータスバー（仮）</h2>
