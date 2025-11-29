@@ -2,7 +2,7 @@ export const BOARD_WIDTH = 9;
 export const BOARD_HEIGHT = 9;
 export const BOMB_COUNT = 10;
 
-export function generateBombMap(width: number, height: number, bombCount: number): boolean[] {
+export function generateBombMap(width: number, height: number, bombCount: number, excludeIndex: number): boolean[] {
   const totalCells = width * height;
 
   const bombs: boolean[] = new Array(totalCells).fill(false);
@@ -11,7 +11,7 @@ export function generateBombMap(width: number, height: number, bombCount: number
   while (placedBombs < bombCount) {
     const randomIndex = Math.floor(Math.random() * totalCells);
 
-    if (!bombs[randomIndex]) {
+    if (!bombs[randomIndex] && randomIndex !== excludeIndex) {
       bombs[randomIndex] = true;
       placedBombs++;
     }

@@ -25,7 +25,7 @@ export function Board() {
     let currentBombMap = bombMap;
 
     if (currentBombMap.length === 0) {
-      currentBombMap = generateBombMap(BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT);
+      currentBombMap = generateBombMap(BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT, index);
       setBombMap(currentBombMap);
       console.log(currentBombMap)
     }
