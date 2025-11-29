@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./Board.module.css"
 import { Cell } from "../Cell/Cell"
+import { generateBombMap, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "@/src/utils/Logic";
 
 enum CellState {
   CLOSED = 0,
@@ -12,9 +13,9 @@ enum CellState {
 }
 
 export function Board() {
-  const BOARD_WIDTH = 9;
-  const BOARD_HEIGHT = 9;
   const [cellStates, setCellStates] = useState<number[]>(Array(BOARD_WIDTH * BOARD_HEIGHT).fill(0))
+  const [bombMap, setBombMap] = useState<boolean[]>([]);
+
 
   const handleCellClick = (index: number) => {
     const currentStatus = cellStates[index];
@@ -38,7 +39,7 @@ export function Board() {
     } else if (currentStatus === CellState.FLAG) {
       newCellStates[index] = CellState.QUESTION 
     } else if (currentStatus === CellState.QUESTION) {
-      newCellStates[index] = CellState.CLOSED; // 2 -> 0
+      newCellStates[index] = CellState.CLOSED;
     }
     setCellStates(newCellStates);
   };
