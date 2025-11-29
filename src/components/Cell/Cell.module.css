@@ -1,8 +1,8 @@
 .Cell {
   display: grid;
   background-color: #c0c0c0;
-  width: 21.4px;
-  height: 21.3px;
+  width: 21px;
+  height: 21px;
   border-top: 3px solid #fff;
   border-left: 3px solid #fff;
   border-right: 3px solid #808080;
@@ -19,6 +19,6 @@ display: grid;
   width: 21.4px;
   height: 21.3px;
   border: 1px solid #808080;
-  
+
   font-size: 10px;
 }
