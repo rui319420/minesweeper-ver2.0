@@ -18,6 +18,11 @@ export function Cell({x, y, status, onClick, onRightClick}: CellProps) {
   }
 
   const className = status === 3 ? styles.CellOpen : styles.Cell;
+  
+  let mineCount = ""
+  if (className === styles.CellOpen) {
+    mineCount = styles.MineCount 
+  }
 
   return (
     <div
@@ -25,8 +30,9 @@ export function Cell({x, y, status, onClick, onRightClick}: CellProps) {
       onClick={onClick}
       onContextMenu={onRightClick}
     >
-      {cellDisplay()}
-      ({x},{y})
+      <div className={mineCount}>
+        {cellDisplay()}
+      </div>
     </div>
   )
 }
