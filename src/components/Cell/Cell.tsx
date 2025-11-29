@@ -1,4 +1,3 @@
-import { log } from "console";
 import styles from "./Cell.module.css"
 
 type CellProps = {
@@ -14,7 +13,7 @@ export function Cell({x, y, status, onClick, onRightClick}: CellProps) {
   const cellDisplay = () => {
     if (status === 1) return "旗";
     if (status === 2) return "❓";
-    if (status === 3) return `${x},${y}`;
+    if (status === 3) return ``;
     return "";
   }
 
