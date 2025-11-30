@@ -28,7 +28,7 @@
 
 .MineCount {
   background-image: url('../../assets/images/icons.png');
-  background-size: 'contain';
+  background-size: auto 100%;
   background-repeat: no-repeat;
   width: 15px;
   height: 15px;
