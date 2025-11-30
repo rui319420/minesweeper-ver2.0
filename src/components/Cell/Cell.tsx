@@ -20,13 +20,16 @@ export function Cell({x, y, status, count, onClick, onRightClick}: CellProps) {
 
   const className = status === 3 ? styles.CellOpen : styles.Cell;
   
-  let mineCount = ""
-  let backgroundPosition = "0px 0px";
+  let mineCountStyle = {}
+  let showNumber = false;
 
-  if (className === styles.CellOpen) {
-    mineCount = styles.MineCount 
-    const iconIndex = count - 1;
-    backgroundPosition = `-${iconIndex * 15}px 0px`;
+if (status === 3 && count > 0) {
+    showNumber = true;
+    
+    const iconIndex = count - 1; 
+    mineCountStyle = {
+      backgroundPosition: `-${iconIndex * 15}px 0px`
+    };
   }
 
   return (
@@ -35,12 +38,13 @@ export function Cell({x, y, status, count, onClick, onRightClick}: CellProps) {
       onClick={onClick}
       onContextMenu={onRightClick}
     >
-      <div
-        className={mineCount}
-        style={{backgroundPosition: backgroundPosition}}
-      >
-        {cellDisplay()}
-      </div>
+      {showNumber && (
+        <div className={styles.MineCount} style={mineCountStyle}>
+        </div>
+      )}
+      {!showNumber && cellDisplay() !== "" && (
+        <div>{cellDisplay()}</div>
+      )}
     </div>
   )
 }
