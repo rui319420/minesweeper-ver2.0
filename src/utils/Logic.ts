@@ -18,3 +18,27 @@ export function generateBombMap(width: number, height: number, bombCount: number
   }
   return bombs
 }
+
+export function getSurroundBombCount(index: number, width: number, height: number, bombMap: boolean[]): number {
+  if (bombMap.length === 0) return 0;
+
+  let count = 0
+  const x = index % width;
+  const y = Math.floor(index / width);
+
+  for (let dy = -1; dy <= 1; dy++){
+    for (let dx = -1; dx <= 1; dx++){
+      if (dx === 0 && dy === 0) continue;
+
+      const nx = x + dx;
+      const ny = y + dy;
+      if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+        const nIndex = ny * width + nx;
+        if (bombMap[nIndex]) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}

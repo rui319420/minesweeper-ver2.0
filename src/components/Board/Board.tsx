@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./Board.module.css"
 import { Cell } from "../Cell/Cell"
-import { generateBombMap, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "../../utils/Logic";
+import { generateBombMap, getSurroundBombCount, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "../../utils/Logic";
 
 enum CellState {
   CLOSED = 0,
@@ -65,12 +65,14 @@ export function Board() {
         {cells.map((_, index) => {
           const x = index % BOARD_WIDTH;
           const y = Math.floor(index / BOARD_WIDTH);
+          const bombCount = getSurroundBombCount(index, BOARD_WIDTH, BOARD_HEIGHT, bombMap);
           return (
             <Cell
               key={`${x}-${y}`}
               x={x}
               y={y}
               status={cellStates[index]}
+              count={bombCount}
               onClick={() => handleCellClick(index)}
               onRightClick={(e) => handleRightClick(e, index)}
             />

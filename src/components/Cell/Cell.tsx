@@ -4,11 +4,12 @@ type CellProps = {
   x: number;
   y: number;
   status: number; // 0:閉, 1:旗, 2:?, 3:開
+  count: number
   onClick: () => void;
   onRightClick: (e: React.MouseEvent) => void;
 };
 
-export function Cell({x, y, status, onClick, onRightClick}: CellProps) {
+export function Cell({x, y, status, count, onClick, onRightClick}: CellProps) {
   
   const cellDisplay = () => {
     if (status === 1) return "旗";
@@ -24,8 +25,8 @@ export function Cell({x, y, status, onClick, onRightClick}: CellProps) {
 
   if (className === styles.CellOpen) {
     mineCount = styles.MineCount 
-    const iconIndex = 1;
-    backgroundPosition = `-${iconIndex * 15 - 15}px 0px`;
+    const iconIndex = count - 1;
+    backgroundPosition = `-${iconIndex * 15}px 0px`;
   }
 
   return (
