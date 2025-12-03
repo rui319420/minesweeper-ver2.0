@@ -66,6 +66,7 @@ export function Board() {
           const x = index % BOARD_WIDTH;
           const y = Math.floor(index / BOARD_WIDTH);
           const bombCount = getSurroundBombCount(index, BOARD_WIDTH, BOARD_HEIGHT, bombMap);
+          const isBomb = bombMap[index];
           return (
             <Cell
               key={`${x}-${y}`}
@@ -73,6 +74,7 @@ export function Board() {
               y={y}
               status={cellStates[index]}
               count={bombCount}
+              isBomb={isBomb}
               onClick={() => handleCellClick(index)}
               onRightClick={(e) => handleRightClick(e, index)}
             />
