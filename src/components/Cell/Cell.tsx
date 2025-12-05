@@ -29,7 +29,7 @@ export function Cell({x, y, status, count, isBomb, onClick, onRightClick}: CellP
     } else if (count > 0) {
       const iconIndex = count - 1;
       const mineCountStyle = {
-        backgroundPosition: `-${iconIndex * 15}px 0px`
+        backgroundPosition: `-${iconIndex * 20}px 0px`
       };
       content = <div className={styles.MineCount} style={mineCountStyle}></div>;
       };
