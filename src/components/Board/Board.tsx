@@ -4,18 +4,39 @@ import { useState } from "react";
 import styles from "./Board.module.css"
 import { Cell } from "../Cell/Cell"
 import { generateBombMap, getSurroundBombCount, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "../../utils/Logic";
-
-enum CellState {
-  CLOSED = 0,
-  FLAG = 1,
-  QUESTION = 2,
-  OPEN = 3
-}
+import { CellState } from "../../types";
 
 export function Board() {
-  const [cellStates, setCellStates] = useState<number[]>(Array(BOARD_WIDTH * BOARD_HEIGHT).fill(0))
+  const [cellStates, setCellStates] = useState<CellState[]>(Array(BOARD_WIDTH * BOARD_HEIGHT).fill(CellState.CLOSED))
   const [bombMap, setBombMap] = useState<boolean[]>([]);
 
+
+  const openCell = (index: number, newCellStates: CellState[], currentBombMap: boolean[]) => {
+    if (newCellStates[index] !== CellState.CLOSED) return;
+
+    newCellStates[index] = CellState.OPEN;
+
+    const bombCount = getSurroundBombCount(index, BOARD_WIDTH, BOARD_HEIGHT, currentBombMap);
+    
+    // 周囲に爆弾がない場合は、周囲のセルも自動的に開く
+    if (bombCount === 0 && currentBombMap.length > 0) {
+      const x = index % BOARD_WIDTH;
+      const y = Math.floor(index / BOARD_WIDTH);
+
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+
+          const nx = x + dx;
+          const ny = y + dy;
+          if (nx >= 0 && nx < BOARD_WIDTH && ny >= 0 && ny < BOARD_HEIGHT) {
+            const nIndex = ny * BOARD_WIDTH + nx;
+            openCell(nIndex, newCellStates, currentBombMap);
+          }
+        }
+      }
+    }
+  };
 
   const handleCellClick = (index: number) => {
     const currentStatus = cellStates[index];
@@ -27,11 +48,10 @@ export function Board() {
     if (currentBombMap.length === 0) {
       currentBombMap = generateBombMap(BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT, index);
       setBombMap(currentBombMap);
-      console.log(currentBombMap)
     }
 
     const newCellStates = [...cellStates];
-    newCellStates[index] = CellState.OPEN;
+    openCell(index, newCellStates, currentBombMap);
     setCellStates(newCellStates);
   };
 
@@ -53,8 +73,6 @@ export function Board() {
     setCellStates(newCellStates);
   };
 
-  const cells = Array(BOARD_WIDTH * BOARD_HEIGHT).fill(0);
-
   return (
     <div className={styles.Board}>
       <div className={styles.CellBox}
@@ -62,7 +80,7 @@ export function Board() {
           gridTemplateColumns: `repeat(${BOARD_WIDTH}, 1fr)`
         }}
       >
-        {cells.map((_, index) => {
+        {Array.from({ length: BOARD_WIDTH * BOARD_HEIGHT }, (_, index) => {
           const x = index % BOARD_WIDTH;
           const y = Math.floor(index / BOARD_WIDTH);
           const bombCount = getSurroundBombCount(index, BOARD_WIDTH, BOARD_HEIGHT, bombMap);

@@ -1,8 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
 import { Board } from "../components/Board/Board"
-import { Cell } from "../components/Cell/Cell";
 import { StatusBar } from "../components/StatusBar/StatusBar";
 
 

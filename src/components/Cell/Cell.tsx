@@ -1,9 +1,10 @@
 import styles from "./Cell.module.css"
+import { CellState } from "../../types";
 
 type CellProps = {
   x: number;
   y: number;
-  status: number; // 0:閉, 1:旗, 2:?, 3:開
+  status: CellState;
   count: number;
   isBomb: boolean;
   onClick: () => void;
@@ -11,19 +12,11 @@ type CellProps = {
 };
 
 export function Cell({x, y, status, count, isBomb, onClick, onRightClick}: CellProps) {
-  
-  const cellDisplay = () => {
-    if (status === 1) return "旗";
-    if (status === 2) return "❓";
-    if (status === 3) return ``;
-    return "";
-  }
-
-  const className = status === 3 ? styles.CellOpen : styles.Cell;
+  const className = status === CellState.OPEN ? styles.CellOpen : styles.Cell;
   
   let content = null;
 
-  if (status === 3) {
+  if (status === CellState.OPEN) {
     if (isBomb) {
       content = <div className={styles.Mine}></div>;
     } else if (count > 0) {
@@ -32,12 +25,11 @@ export function Cell({x, y, status, count, isBomb, onClick, onRightClick}: CellP
         backgroundPosition: `-${iconIndex * 20}px 0px`
       };
       content = <div className={styles.MineCount} style={mineCountStyle}></div>;
-      };
-    } else {
-    const text = cellDisplay();
-    if (text) {
-      content = <div>{text}</div>;
     }
+  } else if (status === CellState.FLAG) {
+    content = <div>旗</div>;
+  } else if (status === CellState.QUESTION) {
+    content = <div>❓</div>;
   }
 
   return (
