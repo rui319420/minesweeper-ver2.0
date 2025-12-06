@@ -10,9 +10,13 @@ export function StatusBar() {
         <div className={styles.onesPlace}></div>
       </div>
       <div className={styles.faceButtonShadow}>
-        <div className={styles.face}></div>
+        <div className={styles.face} tabIndex={0}></div>
       </div>
-      <div className={styles.timer}>uuu</div>
+      <div className={styles.timer}>
+        <div className={styles.hundredsPlace}></div>
+        <div className={styles.tensPlace}></div>
+        <div className={styles.onesPlace}></div>
+      </div>
     </div>
   )
 }
