@@ -4,7 +4,11 @@ export function StatusBar() {
 
   return (
     <div className={styles.StatusBar}>
-      <div className={styles.mineCounter}>aaa</div>
+      <div className={styles.mineCounter}>
+        <div className={styles.hundredsPlace}></div>
+        <div className={styles.tensPlace}></div>
+        <div className={styles.onesPlace}></div>
+      </div>
       <div className={styles.face}>iii</div>
       <div className={styles.timer}>uuu</div>
     </div>

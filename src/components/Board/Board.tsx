@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./Board.module.css"
 import { Cell } from "../Cell/Cell"
+import { StatusBar } from "../StatusBar/StatusBar";
 import { generateBombMap, getSurroundBombCount, BOARD_WIDTH, BOARD_HEIGHT, BOMB_COUNT } from "../../utils/Logic";
 import { CellState } from "../../types";
 
@@ -75,6 +76,7 @@ export function Board() {
 
   return (
     <div className={styles.Board}>
+      <StatusBar></StatusBar>
       <div className={styles.CellBox}
         style={{
           gridTemplateColumns: `repeat(${BOARD_WIDTH}, 1fr)`

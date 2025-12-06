@@ -2,7 +2,8 @@
   display: grid;
   background-color: #c0c0c0;
   width: 245px;
-  height: 300px;
+  height: 313.5px;
+  box-sizing: border-box;
   border-top: 5px solid #fff;
   border-left: 5px solid #fff;
   border-right: 5px solid #808080;
@@ -17,9 +18,9 @@
   background-color: #c0c0c0; 
   width: 216px;
   height: 216px;
-  border-top: 5px solid #808080;
-  border-left: 5px solid #808080;
-  border-right: 5px solid #fff;
-  border-bottom: 5px solid #fff;
+  border-top: 4.68px solid #808080;
+  border-left: 4.68px solid #808080;
+  border-right: 4.68px solid #fff;
+  border-bottom: 4.68px solid #fff;
   margin-bottom: 7.5px;
 }
