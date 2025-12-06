@@ -9,7 +9,9 @@ export function StatusBar() {
         <div className={styles.tensPlace}></div>
         <div className={styles.onesPlace}></div>
       </div>
-      <div className={styles.face}>iii</div>
+      <div className={styles.faceButtonShadow}>
+        <div className={styles.face}></div>
+      </div>
       <div className={styles.timer}>uuu</div>
     </div>
   )
